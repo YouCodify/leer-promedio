@@ -17,7 +17,7 @@ const inputNumber2 = document.getElementById2('inputNumber2').value;
     
     
     // Generar 7 números aleatorios entre 70 y 100
-    while (numbers.length < 7) {
+    while (numbers.length < Number(inputNumber2)) {
         const randomNumber = Math.floor(Math.random() * (100 - Number(inputNumber2) + 1) + Number(inputNumber2));
         if (!numbers.includes(randomNumber)) {
             numbers.push(randomNumber);
