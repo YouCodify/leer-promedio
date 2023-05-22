@@ -12,10 +12,13 @@ if ('serviceWorker' in navigator) {
 function calculateAverage() {
     const inputNumber = document.getElementById('inputNumber').value;
     const numbers = [];
-
+const inputNumber2 = document.getElementById2('inputNumber2').value;
+    const numbers2 = [];
+    
+    
     // Generar 7 números aleatorios entre 70 y 100
     while (numbers.length < 7) {
-        const randomNumber = Math.floor(Math.random() * (100 - 70 + 1) + 70);
+        const randomNumber = Math.floor(Math.random() * (100 - Number(inputNumber2) + 1) + Number(inputNumber2));
         if (!numbers.includes(randomNumber)) {
             numbers.push(randomNumber);
         }
