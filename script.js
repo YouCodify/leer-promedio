@@ -30,7 +30,7 @@ const inputNumber2 = document.getElementById2('inputNumber2').value;
 
     // Mostrar el resultado en la página
     const resultDiv = document.getElementById('result');
-    resultDiv.textContent = `Los números generados son: ${numbers.join(', ')} y su promedio es: ${average}.`;
+    resultDiv.textContent = `Los números generados son son: ${numbers.join(', ')} y su promedio es: ${average}.`;
 
     // Verificar si el promedio coincide con el número ingresado
     if (average === Number(inputNumber)) {
