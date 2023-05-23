@@ -1,41 +1,52 @@
-// Registrar el Service Worker para habilitar la funcionalidad PWA
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-            console.log('ServiceWorker registrado con éxito:', registration.scope);
-        }, function(err) {
-            console.log('Error al registrar el ServiceWorker:', err);
-        });
-    });
-}
+// // Registrar el Service Worker para habilitar la funcionalidad PWA
+// if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', function() {
+//         navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+//             console.log('ServiceWorker registrado con éxito:', registration.scope);
+//         }, function(err) {
+//             console.log('Error al registrar el ServiceWorker:', err);
+//         });
+//     });
+// }
 
 function calculateAverage() {
     const inputNumber = document.getElementById('inputNumber').value;
-    const numbers = [];
-const inputNumber2 = document.getElementById2('inputNumber2').value;
-    const numbers2 = [];
+    const cantidadnotas = document.getElementById('cantidadnotas').value;
+    const min = document.getElementById('min').value;
+    const max = document.getElementById('max').value;
     
-    
-    // Generar 7 números aleatorios entre 70 y 100
-    while (numbers.length < Number(inputNumber2)) {
-        const randomNumber = Math.floor(Math.random() * (100 - Number(inputNumber2) + 1) + Number(inputNumber2));
-        if (!numbers.includes(randomNumber)) {
-            numbers.push(randomNumber);
-        }
-    }
-
-    // Calcular el promedio de los números generados
-    const sum = numbers.reduce((total, num) => total + num, 0);
-    const average = sum / numbers.length;
-
-    // Mostrar el resultado en la página
-    const resultDiv = document.getElementById('result');
-    resultDiv.textContent = `Los números generados son son: ${numbers.join(', ')} y su promedio es: ${average}.`;
-
-    // Verificar si el promedio coincide con el número ingresado
-    if (average === Number(inputNumber)) {
-        resultDiv.style.color = 'green';
-    } else {
-        resultDiv.style.color = 'red';
-    }
+ 
+    var numeros = generarNumerosConPromedioEnRango(Number(cantidadnotas), Number(min),Number(max),Number(inputNumber));
+     // Mostrar el resultado en la página
+     const resultDiv = document.getElementById('result');
+     resultDiv.innerHTML = `Los números generados son son: <br/><br/> ${numeros.join(' <br/> ')}`; 
 }
+ 
+
+function generarNumerosConPromedioEnRango(cantidadNumeros, min, max, promedio) {
+    // Generar los números aleatorios dentro del rango [min, max]
+    var numeros = [];
+    for (var i = 0; i < cantidadNumeros; i++) {
+      var numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+      console.log(numeroAleatorio)
+      numeros.push(numeroAleatorio);
+    }
+  
+    // Calcular la suma de los números generados
+    var suma = numeros.reduce(function (a, b) {
+      return a + b;
+    }, 0);
+  
+    // Calcular el factor de ajuste para igualar el promedio al número recibido
+    var factorAjuste = promedio / (suma / cantidadNumeros);
+  
+    // Aplicar el factor de ajuste a cada número generado
+    for (var i = 0; i < cantidadNumeros; i++) {
+      numeros[i] *= factorAjuste;
+      numeros[i] = Math.round(numeros[i]);
+    }
+  
+    return numeros;
+  }
+
+ 
